@@ -14,7 +14,9 @@ Text Domain: alexaddd-Plugin
 */
 
 
-if ( ! defined( 'ABSPATH' ) ) {
+// Drei Möglichkeiten sicherzustellen, dass der Zigriff über WordPress erfolgt
+
+if (!defined('ABSPATH')) {
     die;
 }
 
@@ -24,3 +26,30 @@ if ( ! defined( 'ABSPATH' ) ) {
 //     echo 'Hey, you can\t access this file, you silly human!';
 //     exit;
 // }
+
+class AllecadddPlugin
+{
+    function activate() {
+        echo 'The plugin was activated';
+    }
+
+    function deactivate() {
+        echo 'The plugin was deactivated';
+    }
+
+    function uninstall() {
+
+    }
+}
+
+if (class_exists('AlecadddPlugin')) {
+    $alecadddPlugin = new AlecadddPlugin( 'Alecaddd Plugin initialized!' );
+}
+
+// activation
+register_activation_hook( __FILE__, array( $allecadddPlugin, 'activate' ) );
+
+// deactivation
+register_activation_hook( __FILE__, array( $allecadddPlugin, 'deactivate' ) );
+
+// uninstall
